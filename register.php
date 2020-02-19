@@ -53,7 +53,7 @@
                                 
                                 //If the signup process is successful.
                                 if($result){
-                                    //What you do here is up to you!
+                                    // set up an alert echoing below, instead. 
                                     echo 'Thank you for registering with our website.';
                                 }
                                 

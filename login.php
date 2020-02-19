@@ -46,6 +46,7 @@ $_SESSION['user_id'] = $user['id'];
 $_SESSION['logged_in'] = time();
 
 //Redirect to our protected page, which we called home.php
+//Set up an alert echoing below.
 echo "Login succesful!";
 exit;
 
