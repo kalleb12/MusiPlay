@@ -105,7 +105,7 @@ function alert() {
               //"too MANY REDIRECTS BUG HOW TO FIX: https://stackoverflow.com/questions/5269813/php-how-to-hide-text-from-users-who-are-not-logged-in
                                     //ALLTSÅ SKA DU ÄNDRA PÅ "HEADER(LOCATION: INDEX) PÅ BÅDE ÖVRE OCH NEDRE KOD.
 
-                                    include_once 'login.php';
+                                    include 'login.php';
 ?>                              
 
 <!DOCTYPE html>
@@ -126,7 +126,7 @@ function alert() {
     <body>
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand h1">Home</a>
-               <?php require_once 'loggedin.php'; ?>
+               <?php include 'loggedin.php'; ?>
             
 </nav>
 
@@ -166,7 +166,7 @@ function alert() {
                     </button>
                 </div>
                 <div class="modal-body">
-                                <?php include_once 'login.php'; ?>
+                                <?php include 'login.php'; ?>
                                     <form action="index.php" method="post">     <!-- BEHÖVER SE TILL ATT DATABASEN ÄR CONNECTAD MED HJÄLP AV PHP OCH SQL-->
                                     <div class="form-group row">
                                         <label for="username" class="col-sm-2 col-form-label">Username</label> 

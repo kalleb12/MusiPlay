@@ -36,22 +36,30 @@
                 $user_name = $stmt->fetch(PDO::FETCH_ASSOC);
                 //now that $user_name['username']
                 $_SESSION['user_name'] = $user_name['username'];
+                //Might be a bad idea for future coding if $_SESSION['logged_in'] is identical to the string $logged_in. 
                 $logged_in = $_SESSION['user_name'];
                     
-                //logout function, logout funktion does not want to work currently, make sure to work on that.
-                function session_end() {
-                    session_destroy(); 
-                    echo '<script>alert("Successful loggout!")</script>';
-                        
-                    
-                }
-                  echo '<div class=""> <a href="account.php"> '. ucwords($logged_in) . '</a>
-                  <a class="" href="index.php" onclick="<?php session_end();?>">Logout</a>'; //DIV class should float/positiom this div to the right.
-                                                                            //Also make sure to add some distance between the username and logout
-                  
-                  /* >->->->> här är då det nuvarande problemet, försök att fixa till att 
-                  det går att skriva "echo $_SESSION['username']; för att jag vill att usernamnet ska visas
-                  istället för endast user_id då det är bara ett jävla nummer. 2020-02-16" <<-<-<-<-< */
-                                                                            
-                }
+                //logout function,
+                function session_endi() {
+                 unset($_SESSION['username']);
+                 session_destroy(); 
+                    header("Location: Index.php"); 
+              }
+                //So that it can be called out by the html
+              if(isset($_GET['session_enderino'])) {
+                session_endi();
+              }
+                echo '<div class=""> <a href="account.php"> '. ucwords($logged_in) . '</a>
+                <a class="" href="?session_enderino" onclick="logged_out()">Logout</a>'; //DIV class should float/positiom this div to the right.
+                                                                          //Also make sure to add some distance between the username and logout
+                                                           
+              }
+              ?>
+              
+              <script>
+              function logged_out() 
+              {
+                  alert("You have been logged out!");
+              }
+              </script>
             
