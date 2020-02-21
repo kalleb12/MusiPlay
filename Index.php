@@ -2,6 +2,7 @@
 session_start();
 require 'connection.php'; 
 
+//guide for github https://dev.to/juni/git-and-github---must-know-commands-to-make-your-first-commit-333c
 /*
 $user_name = $_GET['user_name'];
 $password = $_GET['password'];
