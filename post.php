@@ -45,7 +45,7 @@ if(isset($_POST['upload'])) {
          $_FILES['music'] = $postmusic;
          $_REQUEST['titleposted'] = $posttitle;
                         //TO BE COMPLETELY HONEST, I DO NOT UNDERSTAND THIS LOGIC. AT ALL.
-                        //Sites that could be of use https://launchschool.com/books/sql/read/joins, https://www.dofactory.com/sql/join, https://www.techrepublic.com/article/sql-basics-query-multiple-tables/
+                        //Sites that could be of use https://codewithawa.com/posts/image-upload-using-php-and-mysql-database, https://launchschool.com/books/sql/read/joins, https://www.dofactory.com/sql/join, https://www.techrepublic.com/article/sql-basics-query-multiple-tables/
                        /*The problem with this code is that there is nothing the website says is wrong although the code itself does not 
                          send the code to the database sql so that must mean that there is something currently wrong with it. I want to 
                          make sure that the two tables, "users" and "post_music" work together through the user_id and post_id so that
