@@ -103,10 +103,10 @@ if(isset($_POST['upload'])) {
                                             </div>
 
                                         </div>
+                                            <input type="submit" id="submitupload" name="upload" class="btn-lg btn-primary mt-2" onclick="?" value="Upload" required>
                                         </form>
                                     </div>
                                 </div>
-                                    <input type="submit" id="submitupload" name="upload" class="btn-lg btn-primary mt-2" onclick="?" value="Upload" required>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
