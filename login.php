@@ -30,7 +30,7 @@ if($user === false){
 echo '<div class="alert alert-danger" role="alert">
  Incorrect username/password combination
 </div>';
-exit;
+exit();
 } else{
 //User account found. Check to see if the given password matches the
 //password hash that we stored in our users table.
@@ -48,14 +48,15 @@ $_SESSION['logged_in'] = time();
 //Redirect to our protected page, which we called home.php
 //Set up an alert echoing below.
 echo "Login succesful!";
-exit;
+header('Location: Index.php');
+exit();
 
 } else{
 //$validPassword was FALSE. Passwords do not match.
 echo '<div class="alert alert-danger" role="alert">
  Incorrect username/password combination
 </div>';
-exit;
+exit();
 }
 }
 

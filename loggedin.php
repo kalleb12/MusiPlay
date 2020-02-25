@@ -40,26 +40,7 @@
                 $logged_in = $_SESSION['user_name'];
                     
                 //logout function,
-                function session_endi() {
-                 unset($_SESSION['username']);
-                 session_destroy(); 
-                    header("Location: Index.php"); 
-              }
-                //So that it can be called out by the html
-              if(isset($_GET['session_enderino'])) {
-                session_endi();
-              }
-                echo '<div class=""> <a href="account.php"> '. ucwords($logged_in) . '</a>
-                <a class="" href="?session_enderino" onclick="logged_out()">Logout</a>'; //DIV class should float/positiom this div to the right.
-                                                                          //Also make sure to add some distance between the username and logout
+                include 'logout.php';
                                                            
               }
               ?>
-              
-              <script>
-              function logged_out() 
-              {
-                  alert("You have been logged out!");
-              }
-              </script>
-            

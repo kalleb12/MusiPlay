@@ -33,7 +33,7 @@
                                     echo '<div class="alert alert-danger" role="alert">
                                    That username already exists!
                                    </div>';
-                                   exit;
+                                   exit();
                                 }
                                 
                                 //Hash the password as we do NOT want to store our passwords in plain text.

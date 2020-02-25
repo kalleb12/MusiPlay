@@ -8,13 +8,14 @@ function account_notloggedin() {
         
     })
 }
+*/
 
 if(!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
                    //Not logged in 
                    header('Location: Index.php');
-                   if()
+                   
                }
-               */ //Above code does not work, try and fix it.
+               
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,30 +32,13 @@ if(!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand h1" href="index.php">Home</a>
                <?php 
-               //Might have to just create a file "logout.php" and do it all from there since this function is being used both in index.php and account.php, not, good.
-                 function session_endi() {
-                    unset($_SESSION['username']);
-                    session_destroy(); 
-                       header("Location: Index.php"); 
-                 }
-                 if(isset($_GET['session_enderino'])) {
-                    session_endi();
-                  }
-
-                 $account_loggedin  = $_SESSION['user_name'];
-                 echo '<div class=""> <a class=""> '. ucwords($account_loggedin) . '</a>
-                  <a class="" href="?session_enderino onclick="loggedout()" ">Logout</a>'; //Onclick does not start start an alert, it only directes 
-                  //DIV class should float/positiom this div to the right.
-                                                                            //Also make sure to add some distance between the username and logout
+               include 'loggedin.php';
                ?>
             
 </nav>
      <script>
-                function loggedout() 
-                {
-                    alert("You have been logged out!");
-                }
-                </script>
+
+     </script>
     
 </body>
 </html>
