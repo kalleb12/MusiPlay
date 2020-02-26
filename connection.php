@@ -10,6 +10,7 @@ try {
 
 */
 
+
 try {
     $pdo = new PDO("mysql:host=localhost;dbname=musiplay", "root", "mypass");
 } catch (\Exception $e) {
@@ -17,5 +18,4 @@ try {
     exit();
 }
 
-
-                       
+                     

@@ -8,7 +8,7 @@
                                 $username = !empty($_POST['username']) ? trim($_POST['username']) : null;
                                 $pass = !empty($_POST['password']) ? trim($_POST['password']) : null;
                                 
-
+                                
                                 
                                 //check if the supplied username already exists.
                                 

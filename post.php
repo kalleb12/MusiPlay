@@ -1,19 +1,14 @@
 <?php 
 $message = '';
 
-if(!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
-    header('Location: Index.php');
-}
-
-
 if(isset($_POST['upload'])) {
 
         
         $title = !empty($_POST['title']) ? trim($_POST['title']) : null;
-        $upload = !empty($_POST['upload']) ? $_POST['upload'] : null;
+        $upload = !empty($_POST['music']) ? HTTP_RAW_POST_DATA($_POST['music']) : null;
 
         //Checks if the title already exists
-        $sql = "SELECT title as tit FROM users WHERE title = :title";
+        $sql = "SELECT count(title) as tit FROM users WHERE title = :title";
         $stmt = $pdo->prepare($sql);
 
         $stmt->bindValue(':title', $title);
@@ -22,28 +17,31 @@ if(isset($_POST['upload'])) {
 
         $titleposted = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if($row['tit'] > 0 ) {
+        if($titleposted['tit'] > 0 ) {
             echo '<script>alert("Title already exists. Choose another title.");</script>';
-        }
+        } else {
         //title checking ended with code above. 
-        
+    
         //Selecting database structure.
          $sql = "INSERT INTO users (title, post) VALUES (:title, :post) WHERE username = :username";
          $stmt = $pdo->prepare($sql);
         
+         $
          //binding database table and $_POST structure.
          $stmt->bindValue(':title', $title);
          $stmt->bindValue(':post', $upload);
-         $stmt->bindValue(':username', $_SESSION['user_id']);
+         $stmt->bindValue(':username', $_SESSION['user_name']);
 
          
          $result = $stmt->execute();
         
-         $_FILES['music'] = $result['post'];
-         $_REQUEST['titleposted'] = $result['title'];
+         $result['title'] = $_FILES['namepost'];
+         $result['post'] = $_FILES['musicposted'];
         
-         $_FILES['music'] = $postmusic;
-         $_REQUEST['titleposted'] = $posttitle;
+          //$_FILES['music'] = $postmusic;
+         //$_COOKIE['titlepost'] = $posttitle;
+        }
+    }
                         //TO BE COMPLETELY HONEST, I DO NOT UNDERSTAND THIS LOGIC. AT ALL.
                         //Sites that could be of use https://codewithawa.com/posts/image-upload-using-php-and-mysql-database, https://launchschool.com/books/sql/read/joins, https://www.dofactory.com/sql/join, https://www.techrepublic.com/article/sql-basics-query-multiple-tables/
                        /*The problem with this code is that there is nothing the website says is wrong although the code itself does not 
@@ -52,7 +50,7 @@ if(isset($_POST['upload'])) {
                          it can show who posted it. The database is both on One.com and locally on XAMPP. 
                          
                        */
-                    }
+                    
             /* echo '<div class="alert alert-success" role="alert">
                  This is a success alert—check it out!
                  </div>';
