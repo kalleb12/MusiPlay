@@ -105,7 +105,7 @@ function alert() {
                 
               //"too MANY REDIRECTS BUG HOW TO FIX: https://stackoverflow.com/questions/5269813/php-how-to-hide-text-from-users-who-are-not-logged-in
                                     //ALLTSÅ SKA DU ÄNDRA PÅ "HEADER(LOCATION: INDEX) PÅ BÅDE ÖVRE OCH NEDRE KOD.
-
+                                    include 'authentication_form.php';
                                     include 'login.php';
 ?>                              
 
@@ -128,22 +128,34 @@ function alert() {
     <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand h1" href="Index.php">Home</a>
         
-               <?php include 'loggedin.php'; ?>
+                <?php include 'loggedin.php'; ?>
             
 </nav>
+                <!-- MUSIC POST MODAL PROCCEDURE -->
+                <?php include 'post.php';?>
+                <!-- END OF MUSIC POST --> 
 
-        <div class="text-center pt-3">
-        <h1>Welcome to Musiplay</h1>
-        <p>your favorite online music player</p>
-        </div>
-
-
-     <div class="container pt-5">
-         <div class="row">
-             <div class="col-md-4">123</div>
-             <div class="col-md-4">123</div>
-             <div class="col-md-4">123</div>
-         </div>
+            
+     <div class="container">
+              <div class="row">
+         <div class="col-8">
+                    <div class="">
+                    <div class=" offset-4 pt-3">
+                    <h1>Welcome to Musiplay</h1>
+                    <p class=" h4">your favorite online music player</p>
+                    </div>
+                    </div>
+               </div>     
+          </div>
+                <div class="row pt-5 offset-2">
+                    
+                    <?php echo 
+                    '<div class="col-4 pr-10">123</div>
+                    <div class="col-4">123</div>
+                    <div class="col-4 pr-10">123</div>'
+                    ?>
+                </div>
+      </div>
      </div>
                     <!-- HJÄLP TILL ATT SKAPA LOG IN FORM, kom ihåg, din TABLE 'login' är redan skapat. 
                     https://www.tutorialrepublic.com/php-tutorial/php-mysql-login-system.php
@@ -154,91 +166,8 @@ function alert() {
                     om den ens nu fungerar lmfao
                     -->
 
-
-   
-
-                        <!-- LOGIN -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                                <?php include 'login.php'; ?>
-                                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">     <!-- BEHÖVER SE TILL ATT DATABASEN ÄR CONNECTAD MED HJÄLP AV PHP OCH SQL-->
-                                    <div class="form-group row">
-                                        <label for="username" class="col-sm-2 col-form-label">Username</label> 
-                                        <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="username" name ="username" required autofocus>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="password" class="col-sm-2 col-form-label">Password</label>
-                                        <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="inputPassword2" name="password"required>
-                                        </div>
-                                    </div>
-                                    <input type="submit" name="login" class="btn btn-primary" value="Login">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
-                    </form>
-                </div>
-                </div>
-            </div>
-            </div>
-            <!-- END OF LOGIN -->
-
-            <!-- REGISTER -->
-            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel2">Register</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                         <?php include_once 'register.php'; ?>
-                             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">  
-                             <div class="form-group row">
-                                  <label for="username" class="col-sm-2 col-form-label">Username</label>
-                                  <div class="col-sm-10">
-                               <input type="text" name="username" class="form-control"  
-                                 required>
-                            <small class="form-text text-muted"></small>
-                                 </div>
-                               </div>
-                               <div class="form-group row">
-                                 <label for="password" name="password" class="col-sm-2 col-form-label">Password</label>
-                                 <div class="col-sm-10">
-                                 <input type="password" name="password" class="form-control" id="inputPassword" 
-                                  required>
-                                 <small class="form-text text-muted"></small>
-                                </div>
-                                 </div>                   
-                                    <input type="submit" name="register" class="btn btn-primary" value="Register">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    
-                    </form>
-                </div>
-                </div>
-            </div>
-            </div>
-            <!-- END OF REGISTER -->    
-
                 
-            <!-- MUSIC POST MODAL PROCCEDURE -->
-            <?php include 'post.php';?>
-            <!-- END OF MUSIC POST --> 
-
+            
     </body>
 
 

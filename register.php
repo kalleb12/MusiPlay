@@ -2,6 +2,7 @@
                             //register 
                             //If the POST var "register" exists (our submit button), then we can
                             //assume that the user has submitted the registration form.
+                            //Source used to help me for this https://www.sitepoint.com/hashing-passwords-php-5-5-password-hashing-api/, efficent way to HASH password
                             if(isset($_POST['register'])){
                                 
                                 //Retrieve the field values from our registration form.
@@ -36,8 +37,11 @@
                                    exit();
                                 }
                                 
+                                $passcost = [
+                                    "cost" => 12
+                                ];
                                 //Hash the password as we do NOT want to store our passwords in plain text.
-                                $passwordHash = password_hash($pass, PASSWORD_BCRYPT, array("cost" => 12));
+                                $passwordHash = password_hash($pass, PASSWORD_BCRYPT, $passcost);
                                 
                                 //Prepare our INSERT statement.
                                 //Remember: We are inserting a new row into our users table.

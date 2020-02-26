@@ -26,7 +26,7 @@ if(isset($_POST['upload'])) {
          $sql = "INSERT INTO users (title, post) VALUES (:title, :post) WHERE username = :username";
          $stmt = $pdo->prepare($sql);
         
-         $
+         
          //binding database table and $_POST structure.
          $stmt->bindValue(':title', $title);
          $stmt->bindValue(':post', $upload);
@@ -34,14 +34,15 @@ if(isset($_POST['upload'])) {
 
          
          $result = $stmt->execute();
-        
-         $result['title'] = $_FILES['namepost'];
-         $result['post'] = $_FILES['musicposted'];
-        
-          //$_FILES['music'] = $postmusic;
-         //$_COOKIE['titlepost'] = $posttitle;
+        if($result) {
+                    $result['title'] = $_FILES['namepost'];
+                    $result['post'] = $_FILES['musicposted'];
+                    }
+                    //$_FILES['music'] = $postmusic;
+                    //$_COOKIE['titlepost'] = $posttitle;
+                }
         }
-    }
+    
                         //TO BE COMPLETELY HONEST, I DO NOT UNDERSTAND THIS LOGIC. AT ALL.
                         //Sites that could be of use https://codewithawa.com/posts/image-upload-using-php-and-mysql-database, https://launchschool.com/books/sql/read/joins, https://www.dofactory.com/sql/join, https://www.techrepublic.com/article/sql-basics-query-multiple-tables/
                        /*The problem with this code is that there is nothing the website says is wrong although the code itself does not 

@@ -8,7 +8,7 @@ if(isset($_POST['login'])){
 
 //Retrieve the field values from our login form.
 $username = !empty($_POST['username']) ? trim($_POST['username']) : null;
-$passwordAttempt = !empty($_POST['password']) ? trim($_POST['password']) : null;
+$passlog = !empty($_POST['password']) ? trim($_POST['password']) : null;
 
 //Retrieve the user account information for the given username.
 $sql = "SELECT id, username, password FROM users WHERE username = :username";
@@ -36,7 +36,7 @@ exit();
 //password hash that we stored in our users table.
 
 //Compare the passwords.
-$validPassword = password_verify($passwordAttempt, $user['password']);
+$validPassword = password_verify($passlog, $user['password']);
 
 //If $validPassword is TRUE, the login has been successful.
 if($validPassword){
