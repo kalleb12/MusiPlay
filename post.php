@@ -5,7 +5,8 @@ if(isset($_POST['upload'])) {
 
         
         $title = !empty($_POST['title']) ? trim($_POST['title']) : null;
-        $upload = !empty($_POST['music']) ? HTTP_RAW_POST_DATA($_POST['music']) : null;
+        $upload = !empty($_POST['music']) ? $_POST['music'] : null;
+        $post_id = 0;
 
         //Checks if the title already exists
         $sql = "SELECT count(title) as tit FROM users WHERE title = :title";
@@ -23,17 +24,18 @@ if(isset($_POST['upload'])) {
         //title checking ended with code above. 
     
         //Selecting database structure.
-         $sql = "INSERT INTO users (title, post) VALUES (:title, :post) WHERE username = :username";
+         $sql = "INSERT INTO post_music (title, post, post_id) VALUES (:title, :post, :post_id)";
          $stmt = $pdo->prepare($sql);
         
          
          //binding database table and $_POST structure.
          $stmt->bindValue(':title', $title);
          $stmt->bindValue(':post', $upload);
-         $stmt->bindValue(':username', $_SESSION['user_name']);
+         $stmt->bindValue(':post_id', $post_id);
 
          
          $result = $stmt->execute();
+
         if($result) {
                     $result['title'] = $_FILES['namepost'];
                     $result['post'] = $_FILES['musicposted'];
@@ -42,7 +44,20 @@ if(isset($_POST['upload'])) {
                     //$_COOKIE['titlepost'] = $posttitle;
                 }
         }
-    
+
+        function getMusic() {
+            global $pdo;
+
+            try {
+                $sql = "SELECT post_music.post, sum(post_music.post) as score, FROM post_music WHERE post_music.post_id = users.id" 
+                        . "LEFT JOIN users ON post_music.post_id = users.id";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute();
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            } catch (\Exception $e) {
+                throw $e;
+            }
+        }
                         //TO BE COMPLETELY HONEST, I DO NOT UNDERSTAND THIS LOGIC. AT ALL.
                         //Sites that could be of use https://codewithawa.com/posts/image-upload-using-php-and-mysql-database, https://launchschool.com/books/sql/read/joins, https://www.dofactory.com/sql/join, https://www.techrepublic.com/article/sql-basics-query-multiple-tables/
                        /*The problem with this code is that there is nothing the website says is wrong although the code itself does not 
@@ -102,7 +117,7 @@ if(isset($_POST['upload'])) {
                                             </div>
 
                                         </div>
-                                            <input type="submit" id="submitupload" name="upload" class="btn-lg btn-primary mt-2" onclick="?" value="Upload" required>
+                                            <input type="submit" id="submitupload" name="upload" class="btn-lg btn-primary mt-2"  value="Upload" required>
                                         </form>
                                     </div>
                                 </div>

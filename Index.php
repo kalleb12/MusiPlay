@@ -117,12 +117,20 @@ function alert() {
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- Place favicon.ico in the root directory -->
         <link rel="stylesheet" source="">
+        <!-- BOOTSTRAP -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <!-- BOOTSTRAP LINK ENDS -->
+
+    <!-- Code below used from https://github.com/greghub/green-audio-player, audio-player STYLE, makes it look a bit better than usual. Usage is allowed.-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/css/green-audio-player.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/js/green-audio-player.min.js"></script>
+    <!-- audio-player STYLE link ENDS-->
+
     </head>
     <body>
     <nav class="navbar navbar-dark bg-dark">
@@ -137,25 +145,45 @@ function alert() {
 
             
      <div class="container">
-              <div class="row">
-         <div class="col-8">
+            <div class="row pt-3">
+            <div class="col-12">
+            <div class="d-inline-flex align-items-baseline">
+                    <div class="order-1 align-text-center">
+                            <div class="pr-5">
+                            <div class="h1">Welcome to Musiplay</div> <br>
+                            <div class="h4">your favorite online music player</div>
+                            </div>
+                    </div>
+                    <div class="order-2 align-text-center">
+                            <div class="pl-5">
+                            <div class="h2 offset-5">Below</div> <br>
+                            <div class="h4">this line you can see the posts made by various accounts</div>
+                            </div>
+                    </div>
+             </div>       
+             </div>     
+             </div>
+
+             <hr>
+
+               <div class="row pt-5">
+                <div class="col-12">
                     <div class="">
-                    <div class=" offset-4 pt-3">
-                    <h1>Welcome to Musiplay</h1>
-                    <p class=" h4">your favorite online music player</p>
+                    <div class="d-flex justify-content-between pt-10">
+                    <?php 
+                                                /* Error on the 'echo' part.  <div class="gap-example"><audio>
+                                                <source src="'echo $_FILES['musicposted']'" type="audio/mpeg"> 
+                                                </audio> </div> */
+                     echo 
+                    '<div class="">123</div>
+                    <div class="gap-example"><audio src="music/AgainandAgain-InnerWave.mp3" type="audio/mpeg"></audio>
                     </div>
-                    </div>
-               </div>     
-          </div>
-                <div class="row pt-5 offset-2">
-                    
-                    <?php echo 
-                    '<div class="col-4 pr-10">123</div>
-                    <div class="col-4">123</div>
-                    <div class="col-4 pr-10">123</div>'
+                    <div class="">123</div>';
                     ?>
+                    </div>
+                    </div>
                 </div>
-      </div>
+              </div>
      </div>
                     <!-- HJÄLP TILL ATT SKAPA LOG IN FORM, kom ihåg, din TABLE 'login' är redan skapat. 
                     https://www.tutorialrepublic.com/php-tutorial/php-mysql-login-system.php
@@ -170,6 +198,12 @@ function alert() {
             
     </body>
 
-
+            <script>
+            new GreenAudioPlayer('.gap-example');
+            GreenAudioPlayer.init({
+                                    selector: '.player', // inits Green Audio Player on each audio container that has class "player"
+                                    stopOthersOnPlay: true
+                                });
+            </script>
 
 </html>
