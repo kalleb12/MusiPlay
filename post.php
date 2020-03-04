@@ -5,9 +5,12 @@ if(isset($_POST['upload'])) {
 
         
         $title = !empty($_POST['title']) ? trim($_POST['title']) : null;
-        $upload = !empty($_POST['music']) ? $_POST['music'] : null;
-        $post_id = 0;
-
+        $upload = !empty($_FILES['music']) ? implode(',', $_FILES['music']) : null;
+        $id = $_SESSION['user_id'];
+        /*
+        $requires = 'mp3';
+        $dirrectory = '/music';
+        */
         //Checks if the title already exists
         $sql = "SELECT count(title) as tit FROM users WHERE title = :title";
         $stmt = $pdo->prepare($sql);
@@ -22,42 +25,38 @@ if(isset($_POST['upload'])) {
             echo '<script>alert("Title already exists. Choose another title.");</script>';
         } else {
         //title checking ended with code above. 
-    
+
+        /*makes sure person has entered right requested file.
+        if(!$requires) {
+            echo 'mp3 only. Try again.'; 
+        } else {
+
+            $titleoid = $_POST['title'];
+            $uploadoid = $_FILES['music']['tmp_name'];
+         //moves file to specified location 
+         move_uploaded_file($uploadoid, $dirrectory . '/' . $title . '.mp3');
+         */
         //Selecting database structure.
          $sql = "INSERT INTO post_music (title, post, post_id) VALUES (:title, :post, :post_id)";
          $stmt = $pdo->prepare($sql);
         
-         
+        
          //binding database table and $_POST structure.
          $stmt->bindValue(':title', $title);
          $stmt->bindValue(':post', $upload);
-         $stmt->bindValue(':post_id', $post_id);
+         $stmt->bindValue(':post_id', $id);
 
          
          $result = $stmt->execute();
 
         if($result) {
-                    $result['title'] = $_FILES['namepost'];
-                    $result['post'] = $_FILES['musicposted'];
+                    echo 'Upload succesful!';
                     }
                     //$_FILES['music'] = $postmusic;
                     //$_COOKIE['titlepost'] = $posttitle;
                 }
         }
-
-        function getMusic() {
-            global $pdo;
-
-            try {
-                $sql = "SELECT post_music.post, sum(post_music.post) as score, FROM post_music WHERE post_music.post_id = users.id" 
-                        . "LEFT JOIN users ON post_music.post_id = users.id";
-                $stmt = $pdo->prepare($sql);
-                $stmt->execute();
-                return $stmt->fetch(PDO::FETCH_ASSOC);
-            } catch (\Exception $e) {
-                throw $e;
-            }
-        }
+      
                         //TO BE COMPLETELY HONEST, I DO NOT UNDERSTAND THIS LOGIC. AT ALL.
                         //Sites that could be of use https://codewithawa.com/posts/image-upload-using-php-and-mysql-database, https://launchschool.com/books/sql/read/joins, https://www.dofactory.com/sql/join, https://www.techrepublic.com/article/sql-basics-query-multiple-tables/
                        /*The problem with this code is that there is nothing the website says is wrong although the code itself does not 

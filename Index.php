@@ -174,11 +174,12 @@ function alert() {
                                                 /* Error on the 'echo' part.  <div class="gap-example"><audio>
                                                 <source src="'echo $_FILES['musicposted']'" type="audio/mpeg"> 
                                                 </audio> </div> */
-                     echo 
+                     /*echo 
                     '<div class="">123</div>
                     <div class="gap-example"><audio src="music/AgainandAgain-InnerWave.mp3" type="audio/mpeg"></audio>
                     </div>
-                    <div class="">123</div>';
+                    <div class="">123</div>'; */
+                    echo getMusic();
                     ?>
                     </div>
                     </div>
@@ -205,5 +206,27 @@ function alert() {
                                     stopOthersOnPlay: true
                                 });
             </script>
+  <?php
+  function getMusic() {
+    global $pdo;
 
+    try {
+        $sql = "SELECT post_music.post, sum(post_music.post) as score, FROM post_music WHERE post_music.post_id = users.id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (\Exception $e) {
+        throw $e;
+    }
+}
+    function showMusic() {
+        global $pdo;
+        try {
+            echo ' <div class="gap-example"><audio src="getMusic()" type="audio/mpeg"></audio>';
+
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+  ?>
 </html>
